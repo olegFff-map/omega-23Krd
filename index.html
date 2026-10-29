@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>ОМЕГА — Строительная компания | Дома под ключ, ремонт, металлоконструкции</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --dark-bg: #121212;
+            --gold: #c5a059;
+            --gold-hover: #d4b370;
+            --light-gold: #e8d5b5;
+            --text-white: #f5f5f5;
+            --text-gray: #a0a0a0;
+            --border-color: #2a2a2a;
+            --font-main: 'Jost', sans-serif;
+            --font-accent: 'Cormorant Garamond', serif;
+            --font-logo: 'Jost', sans-serif;
+            --transition: all 0.4s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { 
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--black);
+            color: var(--text-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 100vh;
+            width: 100%;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; height: auto; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
+        /* --- АНИМАЦИИ --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* --- ТИПОГРАФИКА --- */
+        .section-title {
+            font-family: var(--font-accent);
+            font-size: 48px;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            word-wrap: break-word;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 13px;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 500;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+        .btn:hover { background: var(--gold); color: var(--black); }
+        .btn-filled { background: var(--gold); color: var(--black); }
+        .btn-filled:hover { background: transparent; color: var(--gold); }
+
+        /* --- ШАПКА --- */
+        header {
+            background: var(--black);
+            position: relative;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .header-inner { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 0; 
+            gap: 20px; 
+            flex-wrap: wrap;
+        }
+        .logo-wrap { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            color: var(--gold); 
+            text-decoration: none; 
+            flex-shrink: 0; 
+        }
+        .logo-svg { width: 55px; height: auto; margin-bottom: -5px; }
+        .logo-text { font-family: var(--font-logo); font-size: 24px; font-weight: 600; letter-spacing: 8px; margin-left: 8px; }
+        .logo-sub { font-family: var(--font-main); font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); opacity: 0.8; margin-top: -2px; font-weight: 400; }
+        .header-contacts { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+        
+        .contact-block { display: flex; flex-direction: column; gap: 6px; }
+        .phone-line { display: flex; align-items: center; gap: 10px; }
+        .phone-name { 
+            font-family: var(--font-main);
+            font-size: 12px; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            font-weight: 600; 
+            min-width: 70px;
+        }
+        .phone-link { font-size: 15px; font-weight: 500; color: var(--text-white); letter-spacing: 0.5px; white-space: nowrap; }
+        .phone-link i { color: var(--gold); margin-right: 8px; font-size: 12px; }
+
+        .header-address { color: var(--text-gray); font-size: 12px; display: flex; align-items: center; gap: 6px; font-weight: 300; }
+        .header-address i { color: var(--gold); }
+        
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            border-left: 1px solid var(--border-color);
+            padding-left: 25px;
+        }
+        .tg-link, .email-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            color: var(--gold); 
+            font-size: 13px; 
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .tg-link i, .email-link i { font-size: 16px; }
+
+        /* --- ГЕРОЙ-СЕКЦИЯ --- */
+        .hero {
+            min-height: auto;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 80px 0 60px;
+            background: #1a1a1a;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.85) 60%, rgba(10,10,10,0.6) 100%);
+            z-index: 0;
+        }
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+        .hero h1 {
+            font-family: var(--font-accent);
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: var(--text-white);
+            font-weight: 600;
+            word-wrap: break-word;
+        }
+        .hero h1 span { color: var(--gold); }
+        .hero p {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            max-width: 500px;
+            font-weight: 300;
+        }
+
+        .hero-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .highlight-card {
+            background: rgba(18, 18, 18, 0.85);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-left: 3px solid var(--gold);
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+        
+        .highlight-icon {
+            flex-shrink: 0;
+            width: 60px; height: 60px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--gold);
+        }
+        .highlight-num {
+            font-family: var(--font-accent);
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .highlight-text {
+            font-size: 13px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        /* --- ПРЕИМУЩЕСТВА --- */
+        .features { padding: 80px 0; background: var(--dark-bg); border-bottom: 1px solid var(--border-color); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feature-item { text-align: center; padding: 40px 30px; border: 1px solid var(--border-color); background: var(--black); }
+        .feature-item i { font-size: 36px; color: var(--gold); margin-bottom: 25px; display: inline-block; }
+        .feature-item h3 { font-family: var(--font-accent); font-size: 22px; margin-bottom: 12px; font-weight: 600; letter-spacing: 0.5px; }
+        .feature-item p { font-size: 14px; color: var(--text-gray); font-weight: 300; }
+
+        /* --- УСЛУГИ --- */
+        .services { padding: 100px 0; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .service-card { background: var(--dark-bg); border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .service-content { padding: 45px 35px; flex-grow: 1; display: flex; flex-direction: column; }
+        .service-icon { font-size: 32px; color: var(--gold); margin-bottom: 25px; display: inline-block; }
+        .service-content h3 { font-family: var(--font-accent); font-size: 26px; color: var(--text-white); margin-bottom: 15px; font-weight: 600; }
+        .service-content p { color: var(--text-gray); font-size: 14px; margin-bottom: 30px; flex-grow: 1; font-weight: 300; }
+        .service-actions { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 25px; margin-top: auto; gap: 15px; flex-wrap: wrap; }
+        .service-price { font-family: var(--font-accent); font-size: 22px; font-weight: 700; color: var(--gold); }
+        .service-price span { font-family: var(--font-main); color: var(--text-gray); font-size: 13px; font-weight: 400; }
+
+        /* --- СТАТИСТИКА --- */
+        .stats { padding: 80px 0; background: var(--dark-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
+        .stat-num { font-family: var(--font-accent); font-size: 72px; color: var(--gold); line-height: 1; margin-bottom: 15px; font-weight: 700; }
+        .stat-text { font-size: 12px; text-transform: uppercase; letter-spacing: 4px; color: var(--text-white); font-weight: 500; }
+
+        /* --- О КОМПАНИИ --- */
+        .about { padding: 100px 0; background: var(--dark-bg); }
+        .about-wrap { display: flex; align-items: center; gap: 80px; }
+        .about-logo-block { flex: 0 0 350px; display: flex; justify-content: center; align-items: center; padding: 40px; border: 1px solid var(--border-color); position: relative; }
+        .about-logo-block::before, .about-logo-block::after { content: ''; position: absolute; width: 30px; height: 30px; border: 1px solid var(--gold); }
+        .about-logo-block::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .about-logo-block::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+        .about-logo-inner { text-align: center; }
+        .about-logo-inner svg { width: 120px; height: auto; margin-bottom: 20px; }
+        .about-logo-inner .logo-text { font-size: 32px; letter-spacing: 10px; margin-left: 10px; }
+        .about-logo-inner .logo-sub { font-size: 9px; letter-spacing: 4px; }
+        .about-text { flex: 1; min-width: 0; }
+        .about-text h2 { font-family: var(--font-accent); font-size: 42px; color: var(--gold); margin-bottom: 30px; font-weight: 600; letter-spacing: 1px; }
+        .about-text p { color: var(--text-gray); margin-bottom: 20px; font-size: 15px; font-weight: 300; }
+
+        /* ============ КАТАЛОГ РАБОТ (ДЕСКТОП) ============ */
+        .catalog-section {
+            padding: 120px 0;
+            background: var(--black);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .catalog-desktop {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .catalog-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 2000px;
+            width: 100%;
+            margin-top: 30px;
+        }
+        .magazine {
+            position: relative;
+            width: 900px;
+            max-width: 100%;
+            height: 520px;
+            transform-style: preserve-3d;
+        }
+        .magazine::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            width: 30px; height: 100%;
+            background: linear-gradient(90deg, #1a1a1a, #0a0a0a 50%, #1a1a1a);
+            transform: translateX(-50%) translateZ(-5px);
+            border-radius: 5px;
+            z-index: 0;
+        }
+        .page {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: #f4f0e8;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .page-left {
+            left: 0;
+            border-radius: 8px 0 0 8px;
+            transform-origin: right center;
+            background: linear-gradient(90deg, #eae4d8 0%, #f4f0e8 5%, #f4f0e8 100%);
+            border: 1px solid #d4c9b5;
+            border-right: none;
+        }
+        .page-right {
+            right: 0;
+            border-radius: 0 8px 8px 0;
+            transform-origin: left center;
+            background: linear-gradient(-90deg, #eae4d8 0%, #f4f0e8 5%, #f4f0e8 100%);
+            border: 1px solid #d4c9b5;
+            border-left: none;
+        }
+        .flip-page {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .mag-content-full {
+            padding: 60px 45px;
+            color: #2a1f14;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(to bottom, #f4f0e8, #ede6d8);
+        }
+        .mag-number {
+            font-family: var(--font-accent);
+            font-size: 16px;
+            color: #8a6d3b;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .mag-title {
+            font-family: var(--font-accent);
+            font-size: 42px;
+            color: #1a1a1a;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        .mag-divider {
+            width: 60px; height: 2px;
+            background: #c5a059;
+            margin-bottom: 30px;
+        }
+        .mag-desc {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #4a4035;
+            margin-bottom: 40px;
+            font-weight: 400;
+            max-width: 95%;
+        }
+        .mag-specs {
+            display: flex;
+            gap: 40px;
+            margin-top: auto;
+            font-size: 11px;
+            color: #6b5b45;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-top: 1px solid #d4c9b5;
+            padding-top: 25px;
+        }
+        .mag-specs span strong { 
+            color: #1a1a1a; 
+            display: block; 
+            font-size: 28px; 
+            font-family: var(--font-accent);
+            letter-spacing: 0; 
+            margin-top: 5px;
+        }
+
+        .mag-cover {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            padding: 40px; text-align: center;
+            position: relative;
+        }
+        .mag-cover::before {
+            content: '';
+            position: absolute;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
+            border: 1px solid #c5a059;
+            opacity: 0.5;
+        }
+        .mag-cover svg { width: 60px; margin-bottom: 25px; position: relative; z-index: 1; }
+        .mag-cover h3 {
+            font-family: var(--font-accent);
+            font-size: 42px;
+            color: #c5a059;
+            letter-spacing: 8px;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+        }
+        .mag-cover-sub {
+            font-family: var(--font-main);
+            font-size: 10px;
+            color: #c5a059;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+        }
+
+        .mag-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .mag-arrow {
+            width: 50px; height: 50px;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--gold);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .mag-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+        .mag-dots { display: flex; gap: 10px; }
+        .mag-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+        }
+        .mag-dot.active { background: var(--gold); width: 25px; border-radius: 4px; }
+        .mag-hint {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+        .mag-hint i { color: var(--gold); margin: 0 8px; }
+
+        /* ============ КАТАЛОГ РАБОТ (МОБИЛЬНЫЙ) ============ */
+        .catalog-mobile {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .mobile-project-card {
+            background: linear-gradient(135deg, #f4f0e8, #ede6d8);
+            border: 1px solid #d4c9b5;
+            padding: 30px 25px;
+            border-radius: 6px;
+            color: #2a1f14;
+        }
+        .mobile-project-card .mag-number {
+            font-size: 13px;
+            letter-spacing: 5px;
+            margin-bottom: 12px;
+        }
+        .mobile-project-card .mag-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .mobile-project-card .mag-divider {
+            margin-bottom: 18px;
+        }
+        .mobile-project-card .mag-desc {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        .mobile-project-card .mag-specs {
+            padding-top: 15px;
+            gap: 25px;
+        }
+        .mobile-project-card .mag-specs span strong { font-size: 22px; }
+        
+        .mobile-catalog-cover {
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 6px;
+            border: 1px solid #2a2a2a;
+            position: relative;
+        }
+        .mobile-catalog-cover::before {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid #c5a059;
+            opacity: 0.4;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+        .mobile-catalog-cover svg { width: 50px; margin: 0 auto 20px; display: block; }
+        .mobile-catalog-cover h3 {
+            font-family: var(--font-accent);
+            font-size: 36px;
+            color: #c5a059;
+            letter-spacing: 6px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .mobile-catalog-cover .mag-cover-sub { font-size: 9px; letter-spacing: 3px; }
+
+        /* --- ВОПРОСЫ И ОТВЕТЫ --- */
+        .faq-section { padding: 100px 0; background: var(--black); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .faq-wrap { max-width: 900px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--border-color); }
+        .faq-item:first-child { border-top: 1px solid var(--border-color); }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 25px 20px; cursor: pointer; gap: 15px; }
+        .faq-question h3 { font-family: var(--font-accent); font-size: 20px; color: var(--text-white); font-weight: 600; transition: color 0.3s ease; }
+        .faq-item.active .faq-question h3 { color: var(--gold); }
+        .faq-icon { font-size: 16px; color: var(--gold); transition: transform 0.4s ease; flex-shrink: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); border-radius: 50%; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); background: var(--gold); color: var(--black); border-color: var(--gold); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
+        .faq-item.active .faq-answer { max-height: 800px; padding-bottom: 25px; }
+        .faq-answer p { color: var(--text-gray); font-size: 15px; font-weight: 300; padding: 0 20px; line-height: 1.8; }
+
+        /* --- ФОРМА --- */
+        .contact-section { padding: 100px 0; }
+        .form-wrap { max-width: 600px; margin: 0 auto; background: var(--dark-bg); padding: 50px; border: 1px solid var(--border-color); }
+        .form-group { margin-bottom: 25px; }
+        .form-group input { width: 100%; padding: 16px; background: transparent; border: 1px solid var(--border-color); color: var(--text-white); font-family: var(--font-main); font-size: 16px; font-weight: 300; }
+        .form-group input::placeholder { color: var(--text-gray); }
+        .form-wrap .btn { width: 100%; }
+
+        /* --- ПОДВАЛ --- */
+        footer { background: var(--black); padding: 60px 0 30px; border-top: 1px solid var(--border-color); font-size: 14px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-family: var(--font-accent); color: var(--gold); font-size: 22px; margin-bottom: 25px; font-weight: 600; letter-spacing: 1px; }
+        .footer-col p { color: var(--text-gray); margin-bottom: 12px; font-weight: 300; }
+        .footer-col i { color: var(--gold); margin-right: 12px; width: 16px; text-align: center; }
+        .footer-phone-item { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+        .footer-phone-name {
+            color: var(--gold);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            min-width: 70px;
+        }
+        .footer-legal {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 25px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+        .footer-legal a { color: var(--text-gray); font-size: 12px; position: relative; font-weight: 300; }
+        .footer-legal a:not(:last-child)::after { content: '•'; position: absolute; right: -15px; color: var(--border-color); }
+        .footer-bottom { text-align: center; padding-top: 25px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 12px; font-weight: 300; }
+
+        /* ============================================ */
+        /* ============ ПЛАНШЕТ (992px и меньше) ============ */
+        /* ============================================ */
+        @media (max-width: 992px) {
+            .about-wrap { flex-direction: column; gap: 40px; }
+            .about-logo-block { flex: 0 0 auto; width: 100%; max-width: 400px; margin: 0 auto; }
+            .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero h1 { font-size: 52px; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .hero-highlights { max-width: 500px; margin: 0 auto; width: 100%; }
+            .header-address { display: none; }
+            .contact-links { border-left: none; padding-left: 0; }
+            
+            /* Скрываем десктопный каталог, показываем мобильный */
+            .catalog-desktop { display: none; }
+            .catalog-mobile { display: flex; }
+        }
+
+        /* ============================================ */
+        /* ============ ТЕЛЕФОН (768px и меньше) ============ */
+        /* ============================================ */
+        @media (max-width: 768px) {
+            .header-inner { 
+                flex-direction: column; 
+                gap: 15px; 
+                padding: 20px 0;
+            }
+            .header-contacts { 
+                flex-direction: column; 
+                gap: 15px; 
+                width: 100%;
+                align-items: center;
+            }
+            .contact-block { align-items: center; }
+            .phone-line { justify-content: center; }
+            .phone-name { min-width: auto; }
+            .contact-links { 
+                flex-direction: row; 
+                justify-content: center;
+                gap: 20px;
+                padding-top: 12px;
+                border-top: 1px solid var(--border-color);
+                width: 100%;
+                flex-wrap: wrap;
+            }
+            .tg-link, .email-link { font-size: 12px; }
+            
+            .hero { 
+                padding: 50px 0 40px;
+            }
+            .hero h1 { font-size: 36px; line-height: 1.2; }
+            .hero p { font-size: 15px; }
+            .hero .btn { width: 100%; padding: 16px 20px; }
+            
+            .hero-highlights { gap: 12px; }
+            .highlight-card { 
+                padding: 18px; 
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .highlight-icon { width: 50px; height: 50px; font-size: 20px; }
+            .highlight-num { font-size: 28px; }
+            .highlight-text { font-size: 11px; letter-spacing: 1.5px; }
+            
+            .section-title { font-size: 32px; }
+            .section-subtitle { font-size: 11px; letter-spacing: 2px; margin-bottom: 35px; }
+            .services, .features, .stats, .about, .faq-section, .contact-section, .catalog-section { 
+                padding: 60px 0; 
+            }
+            
+            .services-grid { grid-template-columns: 1fr; gap: 20px; }
+            .service-content { padding: 30px 22px; }
+            .service-content h3 { font-size: 22px; }
+            .service-content p { font-size: 13px; }
+            .service-icon { font-size: 26px; margin-bottom: 18px; }
+            .service-actions { flex-direction: column; gap: 15px; align-items: stretch; }
+            .service-actions .btn { width: 100%; padding: 12px 20px; }
+            .service-price { text-align: center; font-size: 20px; }
+            
+            .features-grid { grid-template-columns: 1fr; gap: 15px; }
+            .feature-item { padding: 25px 20px; }
+            .feature-item i { font-size: 28px; margin-bottom: 15px; }
+            .feature-item h3 { font-size: 18px; }
+            .feature-item p { font-size: 13px; }
+            
+            .stats-grid { grid-template-columns: 1fr; gap: 25px; }
+            .stat-num { font-size: 52px; }
+            .stat-text { font-size: 11px; letter-spacing: 2px; }
+            
+            .about-text h2 { font-size: 30px; }
+            .about-text p { font-size: 14px; }
+            .about-logo-block { padding: 30px 20px; }
+            .about-logo-inner svg { width: 80px; }
+            .about-logo-inner .logo-text { font-size: 24px; letter-spacing: 6px; }
+            
+            .mobile-project-card { padding: 22px 18px; }
+            .mobile-project-card .mag-title { font-size: 22px; }
+            .mobile-project-card .mag-desc { font-size: 13px; }
+            .mobile-project-card .mag-specs { gap: 15px; }
+            .mobile-project-card .mag-specs span strong { font-size: 18px; }
+            .mobile-catalog-cover { padding: 40px 20px; }
+            .mobile-catalog-cover h3 { font-size: 28px; letter-spacing: 4px; }
+            .mobile-catalog-cover svg { width: 40px; }
+            
+            .faq-question { padding: 18px 12px; gap: 12px; }
+            .faq-question h3 { font-size: 15px; line-height: 1.4; }
+            .faq-icon { width: 26px; height: 26px; font-size: 12px; flex-shrink: 0; }
+            .faq-answer p { font-size: 13px; padding: 0 12px; line-height: 1.7; }
+            .faq-item.active .faq-answer { padding-bottom: 18px; }
+            
+            .form-wrap { padding: 30px 20px; }
+            .form-group input { padding: 14px; font-size: 16px; }
+            
+            footer { padding: 50px 0 25px; }
+            .footer-grid { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+                text-align: center;
+                margin-bottom: 25px;
+            }
+            .footer-col h4 { font-size: 20px; margin-bottom: 18px; }
+            .footer-phone-item { justify-content: center; }
+            .footer-phone-name { min-width: auto; }
+            .footer-col i { margin-right: 6px; }
+            
+            .footer-legal { 
+                flex-direction: column; 
+                gap: 10px; 
+                align-items: center; 
+                padding: 20px 0;
+            }
+            .footer-legal a:not(:last-child)::after { display: none; }
+            .footer-legal a { font-size: 11px; }
+            .footer-bottom { font-size: 11px; padding-top: 20px; }
+        }
+
+        /* ============================================ */
+        /* ============ МАЛЕНЬКИЕ ЭКРАНЫ (400px) ============ */
+        /* ============================================ */
+        @media (max-width: 400px) {
+            .hero h1 { font-size: 30px; }
+            .section-title { font-size: 26px; }
+            .logo-text { font-size: 20px; letter-spacing: 6px; }
+            .logo-svg { width: 45px; }
+            .phone-link { font-size: 14px; }
+            .phone-name { font-size: 11px; }
+            .highlight-card { padding: 15px 12px; }
+            .mobile-project-card .mag-title { font-size: 20px; }
+            .container { padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo-wrap">
+                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="80" width="80" height="4" fill="#c5a059"/>
+                    <rect x="20" y="40" width="4" height="40" fill="#c5a059"/>
+                    <rect x="26" y="40" width="8" height="40" fill="#c5a059"/>
+                    <rect x="36" y="25" width="4" height="55" fill="#c5a059"/>
+                    <rect x="42" y="25" width="6" height="55" fill="#c5a059"/>
+                    <rect x="50" y="35" width="4" height="45" fill="#c5a059"/>
+                    <rect x="56" y="35" width="4" height="45" fill="#c5a059"/>
+                    <rect x="62" y="45" width="4" height="35" fill="#c5a059"/>
+                    <rect x="68" y="45" width="4" height="35" fill="#c5a059"/>
+                    <rect x="74" y="50" width="4" height="30" fill="#c5a059"/>
+                    <rect x="80" y="50" width="4" height="30" fill="#c5a059"/>
+                </svg>
+                <div class="logo-text">ОМЕГА</div>
+                <div class="logo-sub">Строительная компания</div>
+            </a>
+            
+            <div class="header-contacts">
+                <div class="header-address">
+                    <i class="fas fa-map-marker-alt"></i> г. Краснодар, ул. Российская, 408
+                </div>
+                <div class="contact-block">
+                    <div class="phone-line">
+                        <span class="phone-name">Евгений</span>
+                        <a href="tel:+79183330323" class="phone-link"><i class="fas fa-phone-alt"></i> +7 (918) 333-03-23</a>
+                    </div>
+                    <div class="phone-line">
+                        <span class="phone-name">Денис</span>
+                        <a href="tel:+79186990140" class="phone-link"><i class="fas fa-phone-alt"></i> +7 (918) 699-01-40</a>
+                    </div>
+                </div>
+                <div class="contact-links">
+                    <a href="https://t.me/OmegaKrd23" target="_blank" class="tg-link">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </a>
+                    <a href="mailto:omega_krd@bk.ru" class="email-link">
+                        <i class="fas fa-envelope"></i> omega_krd@bk.ru
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h1>Строительство домов <br><span>под ключ</span> в Краснодаре</h1>
+                    <p>Более 8 лет опыта. 200+ сданных объектов. Любые виды металлоконструкций и ремонт любой сложности. Работаем на совесть.</p>
+                    <a href="#contact" class="btn btn-filled">Получить консультацию</a>
+                </div>
+                <div class="hero-highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-award"></i></div>
+                        <div class="highlight-content">
+                            <div class="highlight-num">8 лет</div>
+                            <div class="highlight-text">На рынке строительства</div>
+                        </div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-house-chimney"></i></div>
+                        <div class="highlight-content">
+                            <div class="highlight-num">200+</div>
+                            <div class="highlight-text">Сданных объектов</div>
+                        </div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-shield-halved"></i></div>
+                        <div class="highlight-content">
+                            <div class="highlight-num">15 лет</div>
+                            <div class="highlight-text">Гарантия по договору</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section class="features">
+        <div class="container features-grid">
+            <div class="feature-item reveal">
+                <i class="fas fa-award"></i>
+                <h3>8 лет опыта</h3>
+                <p>Профессиональная команда и сотни успешных проектов</p>
+            </div>
+            <div class="feature-item reveal reveal-delay-1">
+                <i class="fas fa-file-signature"></i>
+                <h3>Договор и гарантия</h3>
+                <p>Фиксируем цены и сроки в официальном договоре</p>
+            </div>
+            <div class="feature-item reveal reveal-delay-2">
+                <i class="fas fa-industry"></i>
+                <h3>Металлоконструкции</h3>
+                <p>Изготовление и монтаж конструкций любой сложности</p>
+            </div>
+            <div class="feature-item reveal reveal-delay-3">
+                <i class="fas fa-tools"></i>
+                <h3>Ремонт под ключ</h3>
+                <p>От косметического до капитального ремонта</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- УСЛУГИ -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title reveal">Наши услуги</h2>
+            <div class="section-subtitle reveal">Качественно. В срок. С гарантией.</div>
+            
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-content">
+                        <i class="fas fa-home service-icon"></i>
+                        <h3>Дома под ключ</h3>
+                        <p>Строительство частных домов от фундамента до чистовой отделки. Индивидуальные проекты и типовые решения. Полный цикл работ под ключ.</p>
+                        <div class="service-actions">
+                            <div class="service-price">от 45 000 <span>₽/м²</span></div>
+                            <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 11px;">Заказать</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-content">
+                        <i class="fas fa-industry service-icon"></i>
+                        <h3>Металлоконструкции</h3>
+                        <p>Любые виды изготовления и монтажа металлоконструкций: ангары, склады, навесы, каркасы зданий. Работаем по вашим чертежам или разрабатываем свои.</p>
+                        <div class="service-actions">
+                            <div class="service-price">от 25 000 <span>₽/м²</span></div>
+                            <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 11px;">Заказать</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-content">
+                        <i class="fas fa-tools service-icon"></i>
+                        <h3>Ремонт любой сложности</h3>
+                        <p>Капитальный, косметический и дизайнерский ремонт домов, квартир и коммерческих помещений. Работаем с любыми материалами и стилями.</p>
+                        <div class="service-actions">
+                            <div class="service-price">от 10 000 <span>₽/м²</span></div>
+                            <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 11px;">Заказать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СТАТИСТИКА -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="reveal">
+                <div class="stat-num" data-target="8">0</div>
+                <div class="stat-text">Лет опыта</div>
+            </div>
+            <div class="reveal reveal-delay-1">
+                <div class="stat-num" data-target="200">0</div>
+                <div class="stat-text">Объектов сдано</div>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <div class="stat-num" data-target="100">0</div>
+                <div class="stat-text">% Довольных клиентов</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О КОМПАНИИ -->
+    <section class="about" id="about">
+        <div class="container about-wrap">
+            <div class="about-logo-block reveal">
+                <div class="about-logo-inner">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="80" width="80" height="4" fill="#c5a059"/>
+                        <rect x="20" y="40" width="4" height="40" fill="#c5a059"/>
+                        <rect x="26" y="40" width="8" height="40" fill="#c5a059"/>
+                        <rect x="36" y="25" width="4" height="55" fill="#c5a059"/>
+                        <rect x="42" y="25" width="6" height="55" fill="#c5a059"/>
+                        <rect x="50" y="35" width="4" height="45" fill="#c5a059"/>
+                        <rect x="56" y="35" width="4" height="45" fill="#c5a059"/>
+                        <rect x="62" y="45" width="4" height="35" fill="#c5a059"/>
+                        <rect x="68" y="45" width="4" height="35" fill="#c5a059"/>
+                        <rect x="74" y="50" width="4" height="30" fill="#c5a059"/>
+                        <rect x="80" y="50" width="4" height="30" fill="#c5a059"/>
+                    </svg>
+                    <div class="logo-text">ОМЕГА</div>
+                    <div class="logo-sub">Строительная компания</div>
+                </div>
+            </div>
+            <div class="about-text reveal reveal-delay-1">
+                <h2>О компании «Омега»</h2>
+                <p>Мы — строительная компания с 8-летним опытом работы в Краснодаре и крае. За это время мы успешно реализовали более 200 объектов различной сложности.</p>
+                <p>Наша специализация — это строительство домов под ключ, изготовление любых металлоконструкций и ремонт. Мы ценим доверие клиентов, поэтому работаем строго по договору, соблюдаем сроки и гарантируем высочайшее качество.</p>
+                <p>С нами вы не узнаете, что такое «нервная стройка».</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАТАЛОГ РАБОТ -->
+    <section class="catalog-section" id="catalog">
+        <div class="container">
+            <h2 class="section-title reveal">Каталог работ</h2>
+            <div class="section-subtitle reveal">Наши реализованные проекты</div>
+            
+            <!-- Десктопный каталог (журнал) -->
+            <div class="catalog-desktop">
+                <div class="catalog-wrap reveal">
+                    <div class="magazine" id="magazine">
+                        <div class="page page-left" id="pageLeft"></div>
+                        <div class="page page-right" id="pageRight"></div>
+                        <div class="flip-page" id="flipPage"></div>
+                    </div>
+                </div>
+
+                <div class="mag-nav">
+                    <button class="mag-arrow" id="prevBtn" aria-label="Предыдущая страница"><i class="fas fa-chevron-left"></i></button>
+                    <div class="mag-dots" id="magDots"></div>
+                    <button class="mag-arrow" id="nextBtn" aria-label="Следующая страница"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="mag-hint">
+                    <i class="fas fa-arrows-left-right"></i> Листайте журнал <i class="fas fa-book-open"></i>
+                </div>
+            </div>
+
+            <!-- Мобильный каталог (вертикальный список) -->
+            <div class="catalog-mobile" id="catalogMobile"></div>
+        </div>
+    </section>
+
+    <!-- ВОПРОСЫ И ОТВЕТЫ -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title reveal">Вопросы и ответы</h2>
+            <div class="section-subtitle reveal">Часто задаваемые вопросы о строительстве</div>
+            
+            <div class="faq-wrap reveal">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Входит ли участок в стоимость дома?</h3>
+                        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>В стоимость строительства участок не входит.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Для чего необходим предварительный выезд бригадира на участок?</h3>
+                        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Чтобы понять, где находится участок и потребуются ли дополнительные изыскания, для расчёта фундамента, а также для того, чтобы узнать, имеет ли участок наклон, что тоже повлияет на расчёт фундамента и на цену строительства дома.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Какая техника используется при строительстве?</h3>
+                        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Из тяжёлой техники применяется: ямобур на колёсном ходу, бетононасос (не всегда, но качество заливки с ним будет лучше), сваебой мобильный, тракторы.</p>
+                        <p style="margin-top: 10px;">Из лёгкой техники это: ручной мотобур (иногда), вибротрамбовка, глубинный вибратор для бетона и прочий ручной инструмент.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>В какое время года можно начинать строить?</h3>
+                        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>В любое. Когда земля замершая, копать будет сложнее, следовательно часов работы экскаваторов будет больше. Больше денег потребуется. Самое лучшее время - июнь / июль / август / сентябрь. В мае, октябре, ноябре строить вполне возможно, но иногда затруднительно. Строительство зимой допустимо (есть даже свои плюсы), но заливки лучше проводить до -15 градусов. Месяца весеннего снеготаяния и высыхания грунта советую всячески избегать.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Какая средняя продолжительность строительства?</h3>
+                        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>В среднем 2-4 месяца на строительство коробки дома. Конечно, всё зависит от типа фундаментов, его параметров (длина, перепад), участка и погодных условий и многих других условий.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Хочу, чтобы картинка дома в голове совпала с реальностью. Как это сделать?</h3>
+                        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Сделать проект дома. Бумага терпит все ошибки и преимущество проекта заключается в том, что можно попробовать на бумаге много разных вариантов, а затем выбрать максимально выигрышный.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФОРМА СВЯЗИ -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title reveal">Обсудим ваш проект?</h2>
+            <div class="section-subtitle reveal">Оставьте заявку, и мы свяжемся в течение 5 минут</div>
+            
+            <div class="form-wrap reveal">
+                <form id="mainForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Ваш телефон" required>
+                    </div>
+                    <button type="submit" class="btn btn-filled">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>ОМЕГА</h4>
+                    <p>Строительная компания. Дома под ключ, металлоконструкции, ремонт. Работаем по Краснодару и краю.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <div class="footer-phone-item">
+                        <span class="footer-phone-name">Евгений</span>
+                        <a href="tel:+79183330323"><i class="fas fa-phone-alt"></i> +7 (918) 333-03-23</a>
+                    </div>
+                    <div class="footer-phone-item">
+                        <span class="footer-phone-name">Денис</span>
+                        <a href="tel:+79186990140"><i class="fas fa-phone-alt"></i> +7 (918) 699-01-40</a>
+                    </div>
+                    <div class="footer-phone-item">
+                        <span class="footer-phone-name">Telegram</span>
+                        <a href="https://t.me/OmegaKrd23" target="_blank"><i class="fab fa-telegram"></i> @OmegaKrd23</a>
+                    </div>
+                    <div class="footer-phone-item">
+                        <span class="footer-phone-name">Почта</span>
+                        <a href="mailto:omega_krd@bk.ru"><i class="fas fa-envelope"></i> omega_krd@bk.ru</a>
+                    </div>
+                    <div class="footer-phone-item" style="margin-top: 20px;">
+                        <span class="footer-phone-name">Офис</span>
+                        <span style="color: var(--text-gray); font-weight: 300;"><i class="fas fa-map-marker-alt"></i> г. Краснодар, ул. Российская, 408</span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#">Дома под ключ</a></li>
+                        <li><a href="#">Металлоконструкции</a></li>
+                        <li><a href="#">Ремонт</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-legal">
+                <a href="#">Все права защищены</a>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Согласие на информационную рассылку</a>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2026 Строительная компания «Омега».
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== Плавный скролл =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ===== Форма =====
+        document.getElementById('mainForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+
+        // ===== Счетчик =====
+        const statsSection = document.querySelector('.stats');
+        let counted = false;
+        function runCounters() {
+            document.querySelectorAll('.stat-num').forEach(el => {
+                const target = +el.getAttribute('data-target');
+                let count = 0;
+                const updateCount = () => {
+                    const inc = Math.ceil(target / 60);
+                    if (count < target) {
+                        count += inc;
+                        if (count > target) count = target;
+                        el.innerText = count + (target >= 100 ? '+' : '');
+                        setTimeout(updateCount, 30);
+                    }
+                };
+                updateCount();
+            });
+        }
+        
+        if ('IntersectionObserver' in window && statsSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !counted) { counted = true; runCounters(); }
+                });
+            }, { threshold: 0.3 });
+            observer.observe(statsSection);
+        } else if (statsSection) {
+            counted = true; runCounters();
+        }
+
+        // ===== Reveal анимация =====
+        const revealElements = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
+        } else {
+            revealElements.forEach(el => el.classList.add('active'));
+        }
+
+        // ===== Аккордеон FAQ =====
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(otherItem => otherItem.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+
+        // ===== ДАННЫЕ ПРОЕКТОВ =====
+        const projects = [
+            {
+                num: 'Проект 01',
+                title: 'Дом «Комфорт»',
+                desc: 'Одноэтажный дом с террасой. Современный дизайн, панорамные окна и продуманная планировка для семьи из 4 человек. Строительство велось с использованием энергоэффективных материалов.',
+                specs: [
+                    { label: 'Площадь', value: '99 м²' },
+                    { label: 'Срок', value: '3 мес.' }
+                ]
+            },
+            {
+                num: 'Проект 02',
+                title: 'Дом «Семейный»',
+                desc: 'Двухэтажный коттедж с гаражом и просторной гостиной. Классическая архитектура с элементами современного стиля. В отделке использованы натуральные материалы премиум-класса.',
+                specs: [
+                    { label: 'Площадь', value: '179 м²' },
+                    { label: 'Срок', value: '4 мес.' }
+                ]
+            },
+            {
+                num: 'Проект 03',
+                title: 'Дом «Премиум»',
+                desc: 'Просторный двухэтажный особняк с бассейном и ландшафтным дизайном. Премиальные материалы, индивидуальный проект и панорамное остекление.',
+                specs: [
+                    { label: 'Площадь', value: '282 м²' },
+                    { label: 'Срок', value: '5 мес.' }
+                ]
+            },
+            {
+                num: 'Проект 04',
+                title: 'Ангар «Индустрия»',
+                desc: 'Быстровозводимый ангар из металлоконструкций для хранения и логистики. Высокие потолки, усиленный каркас и продуманная система вентиляции.',
+                specs: [
+                    { label: 'Площадь', value: '500 м²' },
+                    { label: 'Срок', value: '2 мес.' }
+                ]
+            },
+            {
+                num: 'Проект 05',
+                title: 'Ремонт «Модерн»',
+                desc: 'Капитальный ремонт загородного дома с полной перепланировкой. Дизайнерский интерьер в стиле минимализм с использованием натурального дерева и камня.',
+                specs: [
+                    { label: 'Площадь', value: '145 м²' },
+                    { label: 'Срок', value: '3 мес.' }
+                ]
+            }
+        ];
+
+        // ===== ДЕСКТОПНЫЙ КАТАЛОГ =====
+        const pageLeft = document.getElementById('pageLeft');
+        const pageRight = document.getElementById('pageRight');
+        const flipPage = document.getElementById('flipPage');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const magDots = document.getElementById('magDots');
+        
+        let currentIndex = 0;
+        let isFlipping = false;
+
+        function getCoverHTML() {
+            return `
+                <div class="mag-cover">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="80" width="80" height="4" fill="#c5a059"/>
+                        <rect x="20" y="40" width="4" height="40" fill="#c5a059"/>
+                        <rect x="26" y="40" width="8" height="40" fill="#c5a059"/>
+                        <rect x="36" y="25" width="4" height="55" fill="#c5a059"/>
+                        <rect x="42" y="25" width="6" height="55" fill="#c5a059"/>
+                        <rect x="50" y="35" width="4" height="45" fill="#c5a059"/>
+                        <rect x="56" y="35" width="4" height="45" fill="#c5a059"/>
+                        <rect x="62" y="45" width="4" height="35" fill="#c5a059"/>
+                        <rect x="68" y="45" width="4" height="35" fill="#c5a059"/>
+                        <rect x="74" y="50" width="4" height="30" fill="#c5a059"/>
+                        <rect x="80" y="50" width="4" height="30" fill="#c5a059"/>
+                    </svg>
+                    <h3>ОМЕГА</h3>
+                    <p class="mag-cover-sub">Строительная компания</p>
+                </div>
+            `;
+        }
+
+        function getProjectHTML(project) {
+            if (!project) return '<div class="mag-cover" style="background:linear-gradient(135deg,#f4f0e8,#e0d6c4);"><h3 style="color:#8a6d3b;font-size:20px;">Конец журнала</h3></div>';
+            return `
+                <div class="mag-content-full">
+                    <div class="mag-number">${project.num}</div>
+                    <div class="mag-title">${project.title}</div>
+                    <div class="mag-divider"></div>
+                    <div class="mag-desc">${project.desc}</div>
+                    <div class="mag-specs">
+                        ${project.specs.map(s => `<span>${s.label}<strong>${s.value}</strong></span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPages() {
+            if (pageLeft && pageRight) {
+                if (currentIndex === 0) {
+                    pageLeft.innerHTML = getCoverHTML();
+                } else {
+                    pageLeft.innerHTML = getProjectHTML(projects[currentIndex - 1]);
+                }
+                
+                if (currentIndex < projects.length) {
+                    pageRight.innerHTML = getProjectHTML(projects[currentIndex]);
+                } else {
+                    pageRight.innerHTML = `<div class="mag-cover" style="background:linear-gradient(135deg,#f4f0e8,#e0d6c4);"><h3 style="color:#8a6d3b;font-size:20px;">Конец журнала</h3></div>`;
+                }
+                updateNav();
+            }
+        }
+
+        function updateNav() {
+            if (!prevBtn || !nextBtn || !magDots) return;
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= projects.length;
+            
+            magDots.innerHTML = '';
+            for (let i = 0; i <= projects.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'mag-dot' + (i === currentIndex ? ' active' : '');
+                dot.addEventListener('click', () => goToPage(i));
+                magDots.appendChild(dot);
+            }
+        }
+
+        function goToPage(index) {
+            if (isFlipping || index === currentIndex || !flipPage) return;
+            isFlipping = true;
+            
+            const direction = index > currentIndex ? 'next' : 'prev';
+            
+            if (direction === 'next') {
+                flipPage.innerHTML = pageRight.innerHTML;
+                flipPage.style.transition = 'none';
+                flipPage.style.transform = 'rotateY(0deg)';
+                flipPage.style.zIndex = '20';
+                void flipPage.offsetWidth;
+                flipPage.style.transition = 'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)';
+                flipPage.style.transform = 'rotateY(-180deg)';
+                
+                setTimeout(() => {
+                    currentIndex = index;
+                    renderPages();
+                    flipPage.innerHTML = '';
+                    flipPage.style.transform = 'rotateY(0deg)';
+                    flipPage.style.zIndex = '10';
+                    isFlipping = false;
+                }, 800);
+            } else {
+                flipPage.innerHTML = pageLeft.innerHTML;
+                flipPage.style.transition = 'none';
+                flipPage.style.transform = 'rotateY(0deg)';
+                flipPage.style.zIndex = '20';
+                flipPage.style.transformOrigin = 'right center';
+                void flipPage.offsetWidth;
+                flipPage.style.transition = 'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)';
+                flipPage.style.transform = 'rotateY(180deg)';
+                
+                setTimeout(() => {
+                    currentIndex = index;
+                    renderPages();
+                    flipPage.innerHTML = '';
+                    flipPage.style.transform = 'rotateY(0deg)';
+                    flipPage.style.transformOrigin = 'left center';
+                    flipPage.style.zIndex = '10';
+                    isFlipping = false;
+                }, 800);
+            }
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) goToPage(currentIndex - 1);
+        });
+
+        if (nextBtn) nextBtn.addEventListener('click', () => {
+            if (currentIndex < projects.length) goToPage(currentIndex + 1);
+        });
+
+        renderPages();
+
+        // ===== МОБИЛЬНЫЙ КАТАЛОГ =====
+        const catalogMobile = document.getElementById('catalogMobile');
+        
+        function renderMobileCatalog() {
+            if (!catalogMobile) return;
+            
+            let html = '';
+            
+            // Обложка
+            html += `
+                <div class="mobile-catalog-cover">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="80" width="80" height="4" fill="#c5a059"/>
+                        <rect x="20" y="40" width="4" height="40" fill="#c5a059"/>
+                        <rect x="26" y="40" width="8" height="40" fill="#c5a059"/>
+                        <rect x="36" y="25" width="4" height="55" fill="#c5a059"/>
+                        <rect x="42" y="25" width="6" height="55" fill="#c5a059"/>
+                        <rect x="50" y="35" width="4" height="45" fill="#c5a059"/>
+                        <rect x="56" y="35" width="4" height="45" fill="#c5a059"/>
+                        <rect x="62" y="45" width="4" height="35" fill="#c5a059"/>
+                        <rect x="68" y="45" width="4" height="35" fill="#c5a059"/>
+                        <rect x="74" y="50" width="4" height="30" fill="#c5a059"/>
+                        <rect x="80" y="50" width="4" height="30" fill="#c5a059"/>
+                    </svg>
+                    <h3>ОМЕГА</h3>
+                    <p class="mag-cover-sub">Строительная компания</p>
+                </div>
+            `;
+            
+            // Все проекты
+            projects.forEach(project => {
+                html += `
+                    <div class="mobile-project-card">
+                        <div class="mag-number">${project.num}</div>
+                        <div class="mag-title">${project.title}</div>
+                        <div class="mag-divider"></div>
+                        <div class="mag-desc">${project.desc}</div>
+                        <div class="mag-specs">
+                            ${project.specs.map(s => `<span>${s.label}<strong>${s.value}</strong></span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            catalogMobile.innerHTML = html;
+        }
+
+        renderMobileCatalog();
+    </script>
+</body>
+</html>
